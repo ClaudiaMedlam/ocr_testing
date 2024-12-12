@@ -3,7 +3,7 @@
 
 import 'dart:ui' as ui; // potentially useful in loading images into memory and custom drawing eg for focus box
 import 'package:flutter/material.dart'; // basic
-import 'package:google_ml_kit/google_ml_kit.dart'; // For text recognition
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart'; // For text recognition, without other aspects of ml_kit
 
 
 void main() => runApp(MyApp());
@@ -42,7 +42,7 @@ class ImageDisplayScreenState extends State<ImageDisplayScreen> {
   Future<void> _processImageForOCR() async {
 
     final inputImage = InputImage.fromFilePath(imagePath);
-    final textRecognizer = TextRecognizer();
+    final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin); // Recogniser to focus on latin-based scripts
     final RecognizedText recognizedText = await textRecognizer.processImage(inputImage);
 
     // Process words
